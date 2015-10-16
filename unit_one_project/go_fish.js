@@ -19,27 +19,45 @@ var GoFish = (function() {
                 card.suit = suits[i];
                 card.value = values[x];
                 deck.push(card);
+                var visualCard = $('<div/>').addClass('card');
+                $('.deck').append(visualCard);
+                visualCard.addClass(card.suit).addClass(card.value);
               }
             }
+            // delete below later
+            console.log('made deck');
           },
 
           shuffleDeck: function() {
+            $('.player-one').before($('<div/>').addClass('shuffled-deck'));
             while (shuffledDeck.length < 52) {
-              var randomCard = deck[Math.floor(Math.random()*52)];
+              var randomIndex = Math.floor(Math.random()*52)
+              var randomCard = deck[randomIndex];
               if ((shuffledDeck.indexOf(randomCard)) === -1) {
                 shuffledDeck.push(randomCard);
+                var visualCard = $('.deck div').eq(randomIndex).clone(true);
+                $('.shuffled-deck').append(visualCard);
               }
             }
+            $('.deck').remove();
+            //remove the below
+            console.log(shuffledDeck)
           },
 
           deal: function() {
             for (i = 0; i < 14; i++) {
               if (i % 2 === 0) {
                 playerOne.push(shuffledDeck[0]);
+                var visualCard = $('.shuffled-deck div').eq(0)
+                $('.player-one').append(visualCard);
+                var visualCardValue = visualCard.attr('class').split(' ')[2];
+                visualCard.html('<div>' + visualCardValue + '</div>');
               } else {
                 playerTwo.push(shuffledDeck[0]);
+                $('.player-two').append($('.shuffled-deck div').eq(0));
               }
               shuffledDeck.shift();
+
             }
             //take the below out later
             var playerOneVisual = [];
@@ -174,6 +192,12 @@ var GoFish = (function() {
           },
   }
 }());
-GoFish.makeDeck();
-GoFish.shuffleDeck();
-GoFish.deal();
+window.onload = function() {
+    $('button').click((function() {
+      GoFish.makeDeck();
+      $(this).remove();
+      //make the next two separate later
+      GoFish.shuffleDeck();
+      GoFish.deal();
+    }));
+};
