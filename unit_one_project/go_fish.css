@@ -26,43 +26,51 @@ button {
   margin: 0 auto;
 }
 
-.player-two > div {
+/*.player-two > div {
   height: 198px;
   width: 140px;
   background-image: url("http://www.djmcadam.com/images/bicycleback01.jpg");
   display: inline-block;
   margin: 10px;
-}
+}*/
 
-.player-one > div {
+.player-one > div, .player-two > div {
   height: 198px;
   width: 140px;
-  border: 1px black solid;
+  border-top: 1px black solid;
+  border-left: 1px black solid;
+  border-bottom: 1px black solid;
   display: inline-block;
-  margin: 10px;
-  font-size: 100px;
+  margin-left: -70px;
+  font-size: 50px;
+  text-align: left;
+  padding-left: 8px;
 }
 
 .Spades {
   color: black;
-  background-size: cover;
-  background-image: url("http://www.i2symbol.com/images/symbols/cards/black_spade_suit_u2660_icon_256x256.png");
+  background-size: contain;
+  background-repeat: round;
+  background-image: url("http://www.wpclipart.com/recreation/games/card_icons/card_icon_spade.jpg");
 }
 
 .Clubs {
   color: black;
-  background-size: cover;
-  background-image: url("https://img1.etsystatic.com/016/0/5224796/il_570xN.462220399_pxzw.jpg");
+  background-size: contain;
+  background-repeat: round;
+  background-image: url("http://g02.a.alicdn.com/kf/HTB19KXuIXXXXXbYXXXXq6xXFXXXD/Club-Playing-Card-Suit-Symbol-Funny-JDM-Vinyl-Car-Decal-Sticker-And-All-The-Smooth-Surface.jpg_200x200.jpg");
 }
 
 .Diamonds {
   color: red;
-  background-size: cover;
-  background-image: url("http://rlv.zcache.com/poker_diamond_card_playing_suit_post_cards-r3783bcbb94804cd9a2d0c601b28ae624_vgbaq_8byvr_512.jpg");
+  background-size: contain;
+  background-repeat: round;
+  background-image: url("http://www.wpclipart.com/recreation/games/card_icons/card_symbol_diamond_glossy.png");
 }
 
 .Hearts {
   color: red;
-  background-size: cover;
-  background-image: url("http://images.cpcache.com/merchandise/514_400x400_NoPeel.jpg?region=name:FrontCenter,id:13753331,w:16");
+  background-size: contain;
+  background-repeat: round;
+  background-image: url("data:image/png;base64,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");
 }

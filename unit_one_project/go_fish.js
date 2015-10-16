@@ -24,8 +24,6 @@ var GoFish = (function() {
                 visualCard.addClass(card.suit).addClass(card.value);
               }
             }
-            // delete below later
-            console.log('made deck');
           },
 
           shuffleDeck: function() {
@@ -40,37 +38,25 @@ var GoFish = (function() {
               }
             }
             $('.deck').remove();
-            //remove the below
-            console.log(shuffledDeck)
           },
 
           deal: function() {
             for (i = 0; i < 14; i++) {
               if (i % 2 === 0) {
                 playerOne.push(shuffledDeck[0]);
-                var visualCard = $('.shuffled-deck div').eq(0)
+                var visualCard = $('.shuffled-deck div').eq(0);
                 $('.player-one').append(visualCard);
                 var visualCardValue = visualCard.attr('class').split(' ')[2];
                 visualCard.html('<div>' + visualCardValue + '</div>');
               } else {
                 playerTwo.push(shuffledDeck[0]);
-                $('.player-two').append($('.shuffled-deck div').eq(0));
+                var visualCard = $('.shuffled-deck div').eq(0);
+                $('.player-two').append(visualCard);
+                var visualCardValue = visualCard.attr('class').split(' ')[2];
+                visualCard.html('<div>' + visualCardValue + '</div>');
               }
               shuffledDeck.shift();
-
             }
-            //take the below out later
-            var playerOneVisual = [];
-            for (i in playerOne) {
-              playerOneVisual.push(playerOne[i].value + '-' + playerOne[i].suit);
-            }
-            console.log(playerOneVisual);
-            var playerTwoVisual = [];
-            for (i in playerTwo) {
-              playerTwoVisual.push(playerTwo[i].value + '-' + playerTwo[i].suit);
-            }
-            console.log(playerTwoVisual);
-            console.log(shuffledDeck);
           },
 
           makePlay: function(cardValue) {
@@ -85,6 +71,8 @@ var GoFish = (function() {
                 playerOne.push(matched[i]);
                 var indexNeeded = playerTwo.indexOf(matched[i]);
                 playerTwo.splice(indexNeeded, 1);
+                var visualCard = $('.player-two div.card').eq(indexNeeded);
+                $('.player-one').append(visualCard);
               }
             } else {
               for (i in playerOne) {
@@ -96,27 +84,17 @@ var GoFish = (function() {
                 playerTwo.push(matched[i]);
                 var indexNeeded = playerOne.indexOf(matched[i]);
                 playerOne.splice(indexNeeded, 1);
+                var visualCard = $('.player-one div.card').eq(indexNeeded);
+                $('.player-two').append(visualCard);
               }
             }
             if (matched.length === 0) {
-              console.log('go fish')
+              console.log('go fish');
             } else if (matched.length === 1){
               console.log('Yes here is my ' + matched[0].value)
             } else {
               console.log('Yes here are my ' + matched[0].value + 's')
             }
-            //take the below out later
-            var playerOneVisual = [];
-            for (i in playerOne) {
-              playerOneVisual.push(playerOne[i].value + '-' + playerOne[i].suit);
-            }
-            console.log(playerOneVisual);
-            var playerTwoVisual = [];
-            for (i in playerTwo) {
-              playerTwoVisual.push(playerTwo[i].value + '-' + playerTwo[i].suit);
-            }
-            console.log(playerTwoVisual);
-            console.log(shuffledDeck);
           },
 
           checkForFour: function() {
@@ -151,45 +129,49 @@ var GoFish = (function() {
               }
             }
             //take the below out later
-            var playerOneVisual = [];
-            for (i in playerOne) {
-              playerOneVisual.push(playerOne[i].value + '-' + playerOne[i].suit);
-            }
-            console.log(playerOneVisual);
-            console.log(playerOneSets);
-            var playerTwoVisual = [];
-            for (i in playerTwo) {
-              playerTwoVisual.push(playerTwo[i].value + '-' + playerTwo[i].suit);
-            }
-            console.log(playerTwoVisual);
-            console.log(playerTwoSets);
+            // var playerOneVisual = [];
+            // for (i in playerOne) {
+            //   playerOneVisual.push(playerOne[i].value + '-' + playerOne[i].suit);
+            // }
+            // console.log(playerOneVisual);
+            // console.log(playerOneSets);
+            // var playerTwoVisual = [];
+            // for (i in playerTwo) {
+            //   playerTwoVisual.push(playerTwo[i].value + '-' + playerTwo[i].suit);
+            // }
+            // console.log(playerTwoVisual);
+            // console.log(playerTwoSets);
           },
 
           draw: function() {
             if (playerTurn % 2 === 0) {
               playerOne.push(shuffledDeck[0]);
+              var visualCard = $('.shuffled-deck div').eq(0);
+              $('.player-one').append(visualCard);
+              var visualCardValue = visualCard.attr('class').split(' ')[2];
+              visualCard.html('<div>' + visualCardValue + '</div>');
             } else {
               playerTwo.push(shuffledDeck[0]);
+              var visualCard = $('.shuffled-deck div').eq(0);
+              $('.player-two').append(visualCard);
+              var visualCardValue = visualCard.attr('class').split(' ')[2];
+              visualCard.html('<div>' + visualCardValue + '</div>');
             }
             shuffledDeck.shift();
-            //take the below out later
-            var playerOneVisual = [];
-            for (i in playerOne) {
-              playerOneVisual.push(playerOne[i].value + '-' + playerOne[i].suit);
-            }
-            console.log(playerOneVisual);
-            var playerTwoVisual = [];
-            for (i in playerTwo) {
-              playerTwoVisual.push(playerTwo[i].value + '-' + playerTwo[i].suit);
-            }
-            console.log(playerTwoVisual);
-            console.log(shuffledDeck);
-          },
-
-          switchTurn: function() {
-            // for now...
             playerTurn++;
-          },
+            //take the below out later
+            // var playerOneVisual = [];
+            // for (i in playerOne) {
+            //   playerOneVisual.push(playerOne[i].value + '-' + playerOne[i].suit);
+            // }
+            // console.log(playerOneVisual);
+            // var playerTwoVisual = [];
+            // for (i in playerTwo) {
+            //   playerTwoVisual.push(playerTwo[i].value + '-' + playerTwo[i].suit);
+            // }
+            // console.log(playerTwoVisual);
+            // console.log(shuffledDeck);
+          }
   }
 }());
 window.onload = function() {
@@ -199,5 +181,8 @@ window.onload = function() {
       //make the next two separate later
       GoFish.shuffleDeck();
       GoFish.deal();
+      $('.shuffled-deck').on('click', (function() {
+        GoFish.draw();
+      }));
     }));
 };
